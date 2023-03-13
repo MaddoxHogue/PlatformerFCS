@@ -1,11 +1,12 @@
 import { StartMenu } from './scenes/StartMenu.js';
 import { MainLevel } from './scenes/MainLevel.js';
 import { GameOver } from './scenes/GameOver.js';
+import { SecondLevel } from './scenes/SecondLevel.js';
 
 let config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    width: 800,
+    width: 1350,
     height: 600,
     input: {
         gamepad: true
@@ -13,13 +14,13 @@ let config = {
     physics: {
         default: "arcade",
         arcade: {
-            debug: false,
+            debug: true,
             fps: 60,
-            gravity: { y: 0 }
+            gravity: { y: 150, x: 0 }
         }
     },
     scene: [ 
-      StartMenu, GameOver, MainLevel
+      StartMenu, GameOver, MainLevel, SecondLevel
     ]
 };
 
