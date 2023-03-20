@@ -1,4 +1,5 @@
 import {Sword} from '../objects/Sword.js'
+import {Cannon} from '../objects/Cannon.js'
 
 export class Player extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
