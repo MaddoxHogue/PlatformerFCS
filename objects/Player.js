@@ -1,3 +1,5 @@
+import {Sword} from '../objects/Sword.js'
+
 export class Player extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
 		super(scene, x, y, "NCanim")
@@ -24,6 +26,8 @@ export class Player extends Phaser.GameObjects.Sprite {
 		this.lastMode = this.mode
 
 		this.lastAnim = this.animType
+
+		this.sword = new Sword(this.scene, this.x, this.y, this)
 	}
 
 	preUpdate(time, delta) {

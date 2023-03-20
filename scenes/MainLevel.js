@@ -1,7 +1,6 @@
 import {Player} from '../objects/Player.js'
 import {Enemy} from '../objects/Enemy.js'
 import {Platform} from '../objects/Platform.js'
-import {Sword} from '../objects/Sword.js'
 	
 export class MainLevel extends Phaser.Scene {
   constructor() {
@@ -54,8 +53,6 @@ export class MainLevel extends Phaser.Scene {
 		})
 
 		this.player = new Player(this, 0, 0)
-
-		this.sword = new Sword(this, 0, 0, this.player)
 
 		this.spritePlatform = new Platform(this, 555, 55, 'breakPlat')
 
@@ -133,7 +130,7 @@ export class MainLevel extends Phaser.Scene {
     );
 
 		this.physics.add.collider(
-    	this.sword.hitbox,
+    	this.player.sword.hitbox,
       this.enemies,
 			(sword, enemy) => {
 				enemy.destroy()
