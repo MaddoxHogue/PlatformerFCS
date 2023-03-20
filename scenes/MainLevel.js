@@ -16,6 +16,7 @@ export class MainLevel extends Phaser.Scene {
 		this.load.image("jumpPlat", "assets/jumpPlat.png")
 		this.load.image("brickPlat", "assets/brickPlat.png")
 		this.load.image("sword", "assets/sword.png")
+		this.load.image("cannon", "assets/cannon.png")
 		this.load.image("breakPlat", "assets/breakPlat.png")
   }
 
