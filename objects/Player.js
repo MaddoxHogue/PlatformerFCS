@@ -16,6 +16,8 @@ export class Player extends Phaser.GameObjects.Sprite {
 		this.wallJumpSwitch = true
 
 		this.mode = "Nacho"
+
+		this.modeFlag = false
 		
 		this.animType = "Idle"
 
@@ -61,9 +63,22 @@ export class Player extends Phaser.GameObjects.Sprite {
 			} else {
 				this.jumpCooldown = false
 			}
+
+			if (pad.A) {
+				if(this.modeFlag === false) {
+					if(this.mode === "Nacho") {
+						this.mode = "Cool"
+					} else {
+						this.mode = "Nacho"
+					}
+					this.modeFlag = true
+				}
+			} else {
+				this.modeFlag = false
+			}
 		}
 
-		if(this.lastMode !== this.mode || this.lastAnim !== this. animType) {
+		if(this.lastMode !== this.mode || this.lastAnim !== this.animType) {
 			this.updateAnim(this.mode, this.animType)
 		}
 
@@ -82,3 +97,7 @@ export class Player extends Phaser.GameObjects.Sprite {
 		this.play(`${mode}${type}`)
 	}
 }
+
+//	Y
+//A		X
+//	B
