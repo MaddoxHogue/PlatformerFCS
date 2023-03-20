@@ -10,7 +10,7 @@ export class MainLevel extends Phaser.Scene {
 
   preload() {
     console.log("loading MainLevel");
-		this.load.spritesheet("NCidle", "assets/NCidle.png", {frameWidth: 64, frameHeight: 64})
+		
 		this.load.spritesheet("NCanim", "assets/NCanim.png", {frameWidth: 64, frameHeight: 64})
 		this.load.image("jumpPlat", "assets/jumpPlat.png")
 		this.load.image("brickPlat", "assets/brickPlat.png")
@@ -21,7 +21,7 @@ export class MainLevel extends Phaser.Scene {
   create() {
 		this.anims.create({
 			key: "NachoIdle", 
-			frames: this.anims.generateFrameNumbers("NCidle", {start: 0, end:3, first: 0}), 
+			frames: this.anims.generateFrameNumbers("NCanim", {start: 0, end:3, first: 0}), 
 			framerate: 0,
 			repeat:-1,
 			duration:700

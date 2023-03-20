@@ -14,10 +14,20 @@ export class Player extends Phaser.GameObjects.Sprite {
 		this.speed = 100
 
 		this.wallJumpSwitch = true
+
+		this.mode = "Nacho"
+		
+		this.animType = "Idle"
+
+		this.lastMode = this.mode
+
+		this.lastAnim = this.animType
 	}
 
 	preUpdate(time, delta) {
 		super.preUpdate(time, delta)
+		this.animType = "Idle"
+		
 		if (this.body.onFloor()) {
 			this.jumps = 0
 		} else if (this.jumps === 0) {
@@ -30,17 +40,16 @@ export class Player extends Phaser.GameObjects.Sprite {
 				this.body.setVelocityX(this.speed)
 				if (this.scaleX < 1) { this.scaleX = 1 }
 				this.body.setOffset(0, 0)
+
+				this.animType = "Run"
 			} else if (pad.leftStick.x < -0.1) {
 				this.body.setVelocityX(-this.speed)
 				if (this.scaleX > -1) { this.scaleX = -1 }
 				this.body.setOffset(64, 0)
+
+				this.animType = "Run"
 			} else {
 				this.body.setVelocityX(0)
-			}
-
-			if (pad.leftStick.x > 0.1 || pad.leftStick.x < -0.1)
-			{
-				this.play("NachoRun")
 			}
 
 			if (pad.B) {
@@ -53,11 +62,23 @@ export class Player extends Phaser.GameObjects.Sprite {
 				this.jumpCooldown = false
 			}
 		}
+
+		if(this.lastMode !== this.mode || this.lastAnim !== this. animType) {
+			this.updateAnim(this.mode, this.animType)
+		}
+
+		this.lastMode = this.mode
+
+		this.lastAnim = this.animType
 	}
 
 	checkWalls(platformColor) {
 		if (!this.body.onFloor() && platformColor === 'jump') {
 			this.jumps = 1
 		}
+	}
+
+	updateAnim(mode, type) {
+		this.play(`${mode}${type}`)
 	}
 }

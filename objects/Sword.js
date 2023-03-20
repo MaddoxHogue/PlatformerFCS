@@ -40,9 +40,6 @@ export class Sword extends Phaser.GameObjects.Sprite{
 			*/
 	 
 			this.hitbox.setPosition(this.x + Math.cos(this.rotation) * this.width, this.y + Math.sin(this.rotation) * this.width)
-
-
-			console.log({x: this.target.x, y: this.target.y})
 		}
 	}
 }

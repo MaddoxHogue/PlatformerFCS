@@ -1,14 +1,14 @@
 **Controls**
 	[P] Rotational...
  		[P] Sword
-		[P] Cannon 
+		[?] Cannon 
 	
 	[] Mobilty Options...
 		[] Dash (I frames)
 		[] Ground Slam
 		[] Wall jump?
-		[P] Cannon Jump (NC)
-		[P] Sword Tele? (CR)
+		[?] Cannon Jump (NC)
+		[] Sword Tele? (CR)
 	
 	[] Modes
 		[] Nacho Cheese
@@ -38,8 +38,8 @@
 	 			[] Projectile that refills rage
 
 **Sprites**
-	[P] Player spritesheet
- 		[P] Nacho Cheese
+	[X] Player spritesheet
+ 		[X] Nacho Cheese
 	 	[P] Cool Ranch
 	 	[] Spicy Sweet Chili?
  	[] Enemies
@@ -51,7 +51,8 @@
  		[] Basic block
 	 	[] Break block
 	 	[] Other?
-	[P] Weaponry
- 		[P] Sword
+	[X] Weaponry
+ 		[X] Sword
+	 		[P] Hitbox fixed
 	 	[P] Cannon
 	 	[] Other?
