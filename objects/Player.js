@@ -3,12 +3,12 @@ import {Cannon} from '../objects/Cannon.js'
 
 export class Player extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
-		super(scene, x, y, "NCanim")
+		super(scene, x, y, "CRanim")
 		this.scene = scene
 		this.scene.add.existing(this)
 		this.scene.physics.add.existing(this)
 		this.body.setCollideWorldBounds(true)
-		this.play("NachoIdle")
+		this.play("CoolIdle")
 
 		this.jumps = 0
 		this.maxJumps = 2
@@ -18,17 +18,18 @@ export class Player extends Phaser.GameObjects.Sprite {
 
 		this.wallJumpSwitch = true
 
-		this.mode = "Nacho"
-
+		this.mode = "Cool"
 		this.modeFlag = false
+		this.lastMode = this.mode
 		
 		this.animType = "Idle"
-
-		this.lastMode = this.mode
-
 		this.lastAnim = this.animType
 
-		this.sword = new Sword(this.scene, this.x, this.y, this)
+		this.R2Flag = false
+
+		this.weapon = new Sword(this.scene, this.x, this.y, this)
+
+		this.scene.hitbox.push(this.weapon.hitbox)
 	}
 
 	preUpdate(time, delta) {
@@ -73,13 +74,32 @@ export class Player extends Phaser.GameObjects.Sprite {
 				if(this.modeFlag === false) {
 					if(this.mode === "Nacho") {
 						this.mode = "Cool"
+						this.weapon.remove()
+						this.weapon = new Sword(this.scene, this.x, this.y, this)
+
+						this.hitbox = []
+						this.hitbox.push(this.weapon.hitbox)
 					} else {
 						this.mode = "Nacho"
+						this.weapon.remove()
+						this.weapon = new Cannon(this.scene, this.x, this.y, this)
+
+						this.hitbox = []
+						this.hitbox.push(this.weapon.hitbox)
 					}
 					this.modeFlag = true
 				}
 			} else {
 				this.modeFlag = false
+			}
+
+			if (pad.R2) {
+				if(this.R2Flag = false) {
+					this.weapon.shoot(this)
+					this.R2Flag = true
+				} else {
+					this.R2Flag = false
+				}
 			}
 		}
 

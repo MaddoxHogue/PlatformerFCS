@@ -8,28 +8,21 @@ export class Sword extends Phaser.GameObjects.Sprite{
 									 
 		this.target = target
 
-		this.hitbox = new Phaser.GameObjects.Ellipse(this.scene, this.x, this.y, this.height / 2, this.height, null, 0)
-		this.scene.add.existing(this.hitbox)
-		this.scene.physics.add.existing(this.hitbox)
-		this.hitbox.body.isCircle = true
-		this.hitbox.body.allowGravity = false
+		const hb = new Phaser.GameObjects.Ellipse(this.scene, this.x, this.y, this.height / 2, this.height, null, 0)
+		
+		this.scene.add.existing(hb)
+		this.scene.physics.add.existing(hb)
+		hb.body.isCircle = true
+		hb.body.allowGravity = false
 
-		this.hitbox.setOrigin(0.5, 0.5)
+		hb.setOrigin(0.5, 0.5)
+
+		this.hitbox = hb
 	}
 	preUpdate(time, delta) {
-		//this.scene.physics.moveToObject(this, this.target, 100, null)
-
 		if (this.scene.input.gamepad.total > 0) {
       const pad = this.scene.input.gamepad.getPad(0);
-			/*
-			if(pad.rightStick.x > 0.1) {
-				this.scaleX = 1
-				this.body.setOffset(0, 0)
-			} else if(pad.rightStick.x < -0.1) {
-				this.scaleX = -1
-				this.body.setOffset(64, 0)
-			}
-	 		*/
+			
 			this.setPosition(this.target.x, this.target.y)
 			this.angle = Math.atan2(pad.rightStick.y, pad.rightStick.x) * (180 / Math.PI)
 			this.setAngle(this.angle)
@@ -41,5 +34,10 @@ export class Sword extends Phaser.GameObjects.Sprite{
 	 
 			this.hitbox.setPosition(this.x + Math.cos(this.rotation) * this.width, this.y + Math.sin(this.rotation) * this.width)
 		}
+	}
+	
+	remove() {
+		this.hitbox.destroy()
+		this.destroy()
 	}
 }

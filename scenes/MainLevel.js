@@ -5,6 +5,7 @@ import {Platform} from '../objects/Platform.js'
 export class MainLevel extends Phaser.Scene {
   constructor() {
     super({ key: "main-level" });
+		this.hitbox = []
   }
 
   preload() {
@@ -74,8 +75,6 @@ export class MainLevel extends Phaser.Scene {
   }
 
   update(timestamp, delta) {
-    // this runs every frame
-    // delta can be used to determine the number of milliseconds since the last update
   }
 
   
@@ -130,9 +129,9 @@ export class MainLevel extends Phaser.Scene {
     );
 
 		this.physics.add.collider(
-    	this.player.sword.hitbox,
+    	this.hitbox,
       this.enemies,
-			(sword, enemy) => {
+			(weapon, enemy) => {
 				enemy.destroy()
 			},
 			null,
