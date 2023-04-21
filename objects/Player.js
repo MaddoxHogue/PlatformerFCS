@@ -94,12 +94,12 @@ export class Player extends Phaser.GameObjects.Sprite {
 			}
 
 			if (pad.R2) {
-				if(this.R2Flag = false) {
+				if(!this.R2Flag) {
 					this.weapon.shoot(this)
 					this.R2Flag = true
-				} else {
-					this.R2Flag = false
 				}
+			} else {
+					this.R2Flag = false
 			}
 		}
 

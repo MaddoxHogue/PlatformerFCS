@@ -27,7 +27,7 @@ export class Cannon extends Phaser.GameObjects.Sprite{
 	}
 
 	shoot(shooter) {
-		shooter.body.setVelocityY(-100)
-		console.log('ewdhbdfshbdfx')
+		shooter.body.setVelocity(shooter.x + this.rotation, shooter.y + this.rotation)
+		console.log('pew')
 	}
 }
