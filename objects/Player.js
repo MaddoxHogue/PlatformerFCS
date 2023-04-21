@@ -14,7 +14,7 @@ export class Player extends Phaser.GameObjects.Sprite {
 		this.maxJumps = 2
 		this.jumpCooldown = false
 
-		this.speed = 100
+		this.speed = 300
 
 		this.wallJumpSwitch = true
 
@@ -62,7 +62,7 @@ export class Player extends Phaser.GameObjects.Sprite {
 
 			if (pad.B) {
 				if (this.jumps < this.maxJumps && !this.jumpCooldown) {
-					this.body.setVelocityY(-200)
+					this.body.setVelocityY(-300)
 					this.jumps++
 					this.jumpCooldown = true
 				}

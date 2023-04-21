@@ -14,9 +14,9 @@ let config = {
     physics: {
         default: "arcade",
         arcade: {
-            debug: true,
+            debug: false,
             fps: 60,
-            gravity: { y: 150, x: 0 }
+            gravity: { y: 300, x: 0 }
         }
     },
     scene: [ 
