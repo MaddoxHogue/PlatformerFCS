@@ -66,7 +66,7 @@ export class MainLevel extends Phaser.Scene {
 		this.addPlatform(0, 600 / 2, 10, 600,'norm')
 		this.addPlatform(1350, 600 / 2, 10, 600,'norm')
 
-		switch(this.rng(3,3)) {
+		switch(this.rng(1, 4)) {
 			case 1:
 				this.addPlatform(1350 * 0.2, 400, 1350 / 6, 10,'jump')
 				this.addPlatform(1350 / 2, 300, 1350 / 6, 10,'jump')
@@ -82,8 +82,9 @@ export class MainLevel extends Phaser.Scene {
 				this.addPlatform(1350 / 2, 275, 200, 25,'jump')
 				break;
 			case 4:
-				this.addPlatform(250, 300, 500, 25,'jump')
-				this.addPlatform(1100, 300, 500, 25,'jump')
+				this.addPlatform(250, 350, 500, 25,'jump')
+				this.addPlatform(1100, 350, 500, 25,'jump')
+				break;
 		}
 		
 
