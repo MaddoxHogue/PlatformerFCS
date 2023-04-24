@@ -4,7 +4,7 @@ export class Sword extends Phaser.GameObjects.Sprite{
 		this.scene = scene
 		this.scene.add.existing(this)
 
-		this.setOrigin(0, 0.5)
+		this.setOrigin(0.5, 0.5)
 									 
 		this.target = target
 
@@ -18,8 +18,15 @@ export class Sword extends Phaser.GameObjects.Sprite{
 		hb.setOrigin(0.5, 0.5)
 
 		this.hitbox = hb
+
+		this.hitbox.hit = false
 	}
 	preUpdate(time, delta) {
+		if(this.target.R2Flag === false) {
+			this.setOrigin(0.5, 0.5)
+			this.hitbox.hit = false
+		}
+		
 		if (this.scene.input.gamepad.total > 0) {
       const pad = this.scene.input.gamepad.getPad(0);
 			
@@ -39,5 +46,10 @@ export class Sword extends Phaser.GameObjects.Sprite{
 	remove() {
 		this.hitbox.destroy()
 		this.destroy()
+	}
+
+	shoot() {
+		this.setOrigin(0, 0.5)
+		this.hitbox.hit = true
 	}
 }

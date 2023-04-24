@@ -9,6 +9,8 @@ export class Cannon extends Phaser.GameObjects.Sprite{
 		this.target = target
 
 		this.hitbox = null
+
+		this.hitbox.hit = true
 	}
 	preUpdate(time, delta) {
 		//this.scene.physics.moveToObject(this, this.target, 100, null)

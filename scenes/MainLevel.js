@@ -150,7 +150,10 @@ export class MainLevel extends Phaser.Scene {
     	this.hitbox,
       this.enemies,
 			(weapon, enemy) => {
-				enemy.destroy()
+				if(weapon.hit === true) {
+					enemy.destroy()
+					weapon.hit = false
+				}
 			},
 			null,
 			this
