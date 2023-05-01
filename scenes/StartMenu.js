@@ -49,7 +49,7 @@ export class StartMenu extends Phaser.Scene {
   }
 
   update() {
-		//this.scene.start('main-level')
+		this.scene.start('main-level')
 		
 		if(this.cursor.body.onFloor()) {
 			this.jumps = 0

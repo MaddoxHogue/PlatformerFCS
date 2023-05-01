@@ -8,6 +8,7 @@ export class Player extends Phaser.GameObjects.Sprite {
 		this.scene.add.existing(this)
 		this.scene.physics.add.existing(this)
 		this.body.setCollideWorldBounds(true)
+		//this.setOrigin(0.5, 0.5)
 		this.play("CoolIdle")
 
 		this.jumps = 0
@@ -58,6 +59,10 @@ export class Player extends Phaser.GameObjects.Sprite {
 				this.animType = "Run"
 			} else {
 				this.body.setVelocityX(0)
+			}
+
+			if (pad.leftStick.y > 0.25) {
+				this.body.setVelocityY(500)
 			}
 
 			if (pad.B) {

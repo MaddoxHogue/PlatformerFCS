@@ -1,20 +1,25 @@
-export class Enemy extends Phaser.GameObjects.Sprite{
+export class LankyEnemy extends Phaser.GameObjects.Sprite{
 	constructor(scene, x, y, target) {
-		super(scene, x, y, 'basicEnem')
+		super(scene, x, y, 'lankyEnem')
 		this.target = target
 		this.scene = scene
 		this.scene.add.existing(this)
 		this.scene.physics.add.existing(this)
 		this.body.collideWorldBounds = true
 		this.setOrigin(0.5, 0)
+		this.body.isCircle = true
 	}
 	preUpdate(time, delta) {
 		if(this.target.x < this.body.x) {
-			this.body.setVelocityX(-55)
+			this.body.setVelocityX(-100)
 			this.flipX = false
 		} else {
-			this.body.setVelocityX(55)
+			this.body.setVelocityX(100)
 			this.flipX = true
+		}
+
+		if (this.body.onFloor()) {
+			this.body.setVelocityY(-500)
 		}
 	}
 }

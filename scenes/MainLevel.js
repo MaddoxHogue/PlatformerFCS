@@ -1,6 +1,9 @@
 import {Player} from '../objects/Player.js'
 import {Enemy} from '../objects/Enemy.js'
+import {ElecEnemy} from '../objects/ElecEnemy.js'
+import {LankyEnemy} from '../objects/LankyEnemy.js'
 import {Platform} from '../objects/Platform.js'
+import {Conscript} from '../objects/Conscript.js'
 	
 export class MainLevel extends Phaser.Scene {
   constructor() {
@@ -15,9 +18,14 @@ export class MainLevel extends Phaser.Scene {
 		this.load.spritesheet("CRanim", "assets/CRanim.png", {frameWidth: 64, frameHeight: 64})
 		this.load.image("jumpPlat", "assets/jumpPlat.png")
 		this.load.image("brickPlat", "assets/brickPlat.png")
-		this.load.image("sword", "assets/sword.png")
+		this.load.spritesheet("swordAnim", "assets/sword.png", {frameWidth: 64, frameHeight: 20})
 		this.load.image("cannon", "assets/cannon.png")
 		this.load.image("breakPlat", "assets/breakPlat.png")
+		this.load.image("basicEnem", "assets/basicEnem.png")
+		this.load.image("elecEnem", "assets/elecEnem.png")
+		this.load.image("lankyEnem", "assets/lankyEnem.png")
+		this.load.image("conscriptEnem", "assets/conscriptEnem.png")
+		this.load.image("saw", "assets/saw.png")
   }
 
   create() {
@@ -53,12 +61,31 @@ export class MainLevel extends Phaser.Scene {
 			duration: 1200
 		})
 
+		this.anims.create({
+			key: "SwordIdle", 
+			frames: this.anims.generateFrameNumbers("swordAnim", {start: 0, end:0, first: 0}), 
+			framerate: 0,
+			repeat:-1,
+			duration: 1000
+		})
+
+		this.anims.create({
+			key: "SwordStab", 
+			frames: this.anims.generateFrameNumbers("swordAnim", {start: 1, end:3, first: 1}), 
+			framerate: 0,
+			repeat:0,
+			duration: 200
+		})
+
 		this.player = new Player(this, 0, 0)
 
 		this.spritePlatform = new Platform(this, 555, 55, 'breakPlat')
 		
 		this.enemies = []
 		this.enemies.push(new Enemy(this, 200, 555, this.player))
+		this.enemies.push(new ElecEnemy(this, 200, 555, this.player))
+		this.enemies.push(new LankyEnemy(this, 200, 555, this.player))
+		this.enemies.push(new Conscript(this, 200, 555, this.player))
 
 		this.platforms = []
   	this.addPlatform(1350 / 2, 0, 1350, 10, 'norm')
@@ -120,7 +147,20 @@ export class MainLevel extends Phaser.Scene {
     	this.player,
       this.spritePlatform,
 			(player, spritePlatform) => {
-				this.enemies.push(new Enemy(this, 555, 555, this.player))
+				switch (this.rng(1,4)) {
+					case 1:
+						this.enemies.push(new Enemy(this, 555, 555, this.player))
+							break;
+					case 2:
+						this.enemies.push(new ElecEnemy(this, 555, 555, this.player))
+						break;
+					case 3:
+						this.enemies.push(new LankyEnemy(this, 555, 555, this.player))
+						break;
+					case 4:
+						this.enemies.push(new Conscript(this, 555, 555, this.player))
+						break;
+				}
 			},
 			null,
 			this

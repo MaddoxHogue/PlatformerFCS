@@ -1,8 +1,10 @@
 export class Sword extends Phaser.GameObjects.Sprite{
 	constructor(scene, x, y, target) {
-		super(scene, x, y, 'sword')
+		super(scene, x, y, 'swordAnim')
 		this.scene = scene
 		this.scene.add.existing(this)
+
+		this.play("SwordIdle")
 
 		this.setOrigin(0.5, 0.5)
 									 
@@ -25,6 +27,10 @@ export class Sword extends Phaser.GameObjects.Sprite{
 		if(this.target.R2Flag === false) {
 			this.setOrigin(0.5, 0.5)
 			this.hitbox.hit = false
+			this.play("SwordIdle")
+		} 
+		if (this.hitbox.hit === true) {
+			this.play("SwordStab")
 		}
 		
 		if (this.scene.input.gamepad.total > 0) {

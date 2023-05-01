@@ -8,13 +8,14 @@ let config = {
     parent: 'phaser-example',
     width: 1350,
     height: 600,
+		backgroundColor: 0x777777,
     input: {
         gamepad: true
     },
     physics: {
         default: "arcade",
         arcade: {
-            debug: true,
+            debug: false,
             fps: 60,
             gravity: { y: 300, x: 0 }
         }

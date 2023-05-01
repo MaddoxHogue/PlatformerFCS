@@ -1,6 +1,6 @@
-export class Enemy extends Phaser.GameObjects.Sprite{
+export class ElecEnemy extends Phaser.GameObjects.Sprite{
 	constructor(scene, x, y, target) {
-		super(scene, x, y, 'basicEnem')
+		super(scene, x, y, 'elecEnem')
 		this.target = target
 		this.scene = scene
 		this.scene.add.existing(this)
@@ -10,10 +10,10 @@ export class Enemy extends Phaser.GameObjects.Sprite{
 	}
 	preUpdate(time, delta) {
 		if(this.target.x < this.body.x) {
-			this.body.setVelocityX(-55)
+			this.body.setVelocityX(-150)
 			this.flipX = false
 		} else {
-			this.body.setVelocityX(55)
+			this.body.setVelocityX(150)
 			this.flipX = true
 		}
 	}
